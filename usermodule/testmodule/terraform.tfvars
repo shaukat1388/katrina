@@ -46,6 +46,10 @@ users = {
     display_name = "white"
     password     = "fhunkie@123456!"
   }    
+       muhib = {
+    display_name = "muhib"
+    password     = "fhunkie@123456!"
+  }    
 }#keep this line, and above this line, you can add below block for any new user
 ##      tiger = {
 ##    display_name = "tiger"
