@@ -1,5 +1,5 @@
 
-tenant_domain = "shaukat2058gmail.onmicrosoft.com"
+tenant_domain = "shaukatoktagmail.onmicrosoft.com"
 
 users = {
   man = {
