@@ -13,5 +13,5 @@ resource "azuread_user" "phone" {
 resource "azurerm_role_assignment" "phone_reader" {
   scope                = azurerm_storage_container.container.resource_manager_id
   role_definition_name = "Storage Blob Data Reader"
-  principal_id         = azuread_user.phone2.object_id
+  principal_id         = azuread_user.phone.object_id
 }
