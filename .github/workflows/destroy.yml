@@ -23,9 +23,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        working-directory: "usermodule/testmodule"
+        working-directory: "phone2-storage"
         run: terraform init
 
       - name: Terraform Destroy
-        working-directory: "usermodule/testmodule"
+        working-directory: "phone2-storage"
         run: terraform destroy -auto-approve
