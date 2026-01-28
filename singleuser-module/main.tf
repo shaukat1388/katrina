@@ -7,11 +7,3 @@ resource "azuread_user" "phone" {
   password              = var.phone_password
   force_password_change = false
 }
-# ----------------------------
-# Role Assignment (Read Only)
-# ----------------------------
-resource "azurerm_role_assignment" "phone_reader" {
-  scope                = azurerm_storage_container.container.resource_manager_id
-  role_definition_name = "Storage Blob Data Reader"
-  principal_id         = azuread_user.phone.object_id
-}
