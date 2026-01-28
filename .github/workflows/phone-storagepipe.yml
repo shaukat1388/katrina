@@ -1,5 +1,9 @@
-name: Destroy new-container
+name: Multi User creation
 
+#on:
+#  push:
+#    branches:
+#      - mai
 on:
   workflow_dispatch:
 
@@ -8,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  destroy:
+  terraformjob:
     runs-on: ubuntu-latest
 
     env:
@@ -23,9 +27,13 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        working-directory: "NEW-container"
         run: terraform init
+        working-directory: "usermodule/testmodule"
 
-      - name: Terraform Destroy
-        working-directory: "NEW-container"
-        run: terraform destroy -auto-approve
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: "usermodule/testmodule"
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: "usermodule/testmodule"
