@@ -1,34 +1,48 @@
-############################################
+# -----------------------------
 # Resource Group
-## so this first section is creating an RG called yellow-storage-rg, and if you dont create 
-##then you change values here to mention the existing RG.
-############################################
-resource "azurerm_resource_group" "tf_yellow_rg" {
+# -----------------------------
+resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.location
 }
 
-############################################
+# -----------------------------
 # Storage Account
-# Standard / LRS = cheapest
-##this creates storage account, you mention values below, the values could be of new or existing rg,
-##whatever you defined above
-############################################
-resource "azurerm_storage_account" "tf_yellow_sa" {
+# -----------------------------
+resource "azurerm_storage_account" "sa" {
   name                     = var.storage_account_name
-  resource_group_name      = azurerm_resource_group.tf_yellow_rg.name
-  location                 = azurerm_resource_group.tf_yellow_rg.location
-
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+
+  allow_nested_items_to_be_public = false
 }
 
-############################################
-# Blob Container
-############################################
-#this below line says go create storage containger and give it local name of tf_yellow_container
-resource "azurerm_storage_container" "tf_yellow_container" {
+# -----------------------------
+# Storage Container
+# -----------------------------
+resource "azurerm_storage_container" "container" {
   name                  = var.container_name
-  storage_account_name  = azurerm_storage_account.tf_yellow_sa.name
+  storage_account_name  = azurerm_storage_account.sa.name
   container_access_type = "private"
+}
+
+# -----------------------------
+# Azure AD User
+# -----------------------------
+resource "azuread_user" "phone" {
+  user_principal_name   = "${var.user_name}@shaukatoktagmail.onmicrosoft.com"
+  display_name          = var.user_name
+  password              = var.user_password
+  force_password_change = true
+}
+
+# -----------------------------
+# Role Assignment (Read Only)
+# -----------------------------
+resource "azurerm_role_assignment" "phone_reader" {
+  scope                = azurerm_storage_container.container.resource_manager_id
+  role_definition_name = "Storage Blob Data Reader"
+  principal_id         = azuread_user.phone.object_id
 }
