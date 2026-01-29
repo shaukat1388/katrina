@@ -1,4 +1,4 @@
-name: Multi User creation
+name: phone-storage-module
 
 #on:
 #  push:
@@ -28,12 +28,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "usermodule/testmodule"
+        working-directory: "phone-storage-module"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "usermodule/testmodule"
+        working-directory: "phone-storage-module"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "usermodule/testmodule"
+        working-directory: "phone-storage-module"

@@ -1,13 +1,15 @@
-############################################
-# Storage account name
-############################################
-output "yellow_storage_account_name" {
-  value = azurerm_storage_account.tf_yellow_sa.name
+output "resource_group" {
+  value = azurerm_resource_group.rg.name
 }
 
-############################################
-# Container name
-############################################
-output "yellow_container_name" {
-  value = azurerm_storage_container.tf_yellow_container.name
+output "storage_account" {
+  value = azurerm_storage_account.sa.name
+}
+
+output "container" {
+  value = azurerm_storage_container.container.name
+}
+
+output "user" {
+  value = azuread_user.phone.user_principal_name
 }
