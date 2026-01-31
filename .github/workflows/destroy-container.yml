@@ -1,4 +1,4 @@
-name: Destroy bnew container
+name: Destroy NEW container
 
 on:
   workflow_dispatch:
@@ -23,9 +23,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        working-directory: "New-container"
+        working-directory: "NEW-container"
         run: terraform init
 
       - name: Terraform Destroy
-        working-directory: "New-container"
+        working-directory: "NEW-container"
         run: terraform destroy -auto-approve
