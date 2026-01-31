@@ -1,4 +1,4 @@
-name: Destroy blobmodule
+name: Destroy singleuser-module
 
 on:
   workflow_dispatch:
