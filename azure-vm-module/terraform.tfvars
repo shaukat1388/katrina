@@ -15,6 +15,6 @@ vm_name  = "linux-spot-vm"
 vm_size  = "Standard_B1s"
 
 admin_username = "azureuser"
-ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ..."
+ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAUw2xeLGBTg6arGdHezBJDrcdvxLP+lQNK/0kcQZeiN azure-spot-vm"
 
 os_disk_name = "osdisk-spot-linux"
