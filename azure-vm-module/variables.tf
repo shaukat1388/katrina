@@ -23,6 +23,6 @@ variable "ssh_public_key" {}
 
 variable "os_disk_name" {}
 
-variable "zone" {
-  type = string
-}
+#variable "zone" {
+#  type = string
+#}
