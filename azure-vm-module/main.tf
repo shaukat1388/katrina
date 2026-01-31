@@ -40,11 +40,20 @@ resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
+# changing the following
+#resource "azurerm_public_ip" "pip" {
+#  name                = var.public_ip_name
+#  location            = azurerm_resource_group.rg.location
+#  resource_group_name = azurerm_resource_group.rg.name
+#  allocation_method   = "Dynamic"
+#}
 resource "azurerm_public_ip" "pip" {
   name                = var.public_ip_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
+
+  allocation_method = "Static"
+  sku               = "Standard"
 }
 
 resource "azurerm_network_interface" "nic" {
