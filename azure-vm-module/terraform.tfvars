@@ -1,4 +1,4 @@
-location            = "westus"
+location            = "westus2"
 resource_group_name = "rg-spot-linux"
 
 vnet_name           = "vnet-spot"
@@ -19,4 +19,4 @@ ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTZFxhV8qZN/DSx+CiqVcrJx
 
 os_disk_name = "osdisk-spot-linux"
 
-zone = "2"
+# zone = "2"
