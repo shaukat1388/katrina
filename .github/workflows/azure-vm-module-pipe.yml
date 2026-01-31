@@ -1,4 +1,4 @@
-name: phone-storage-module
+name: Azure VM creation
 
 #on:
 #  push:
@@ -28,12 +28,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "phone-storage-module"
+        working-directory: "azure-vm-module"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "phone-storage-module"
+        working-directory: "azure-vm-module"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "phone-storage-module"
+        working-directory: "azure-vm-module"

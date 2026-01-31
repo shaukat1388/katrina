@@ -1,8 +1,5 @@
-name: phone-container-access
-#on:
-#  push:
-#    branches:
-#      - mai
+name: DESTROY VM 
+
 on:
   workflow_dispatch:
 
@@ -11,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  terraformjob:
+  destroy:
     runs-on: ubuntu-latest
 
     env:
@@ -26,13 +23,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
+        working-directory: "singleuser-module"
         run: terraform init
-        working-directory: "NEW-container"
 
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: "NEW-container"
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: "NEW-container"
+      - name: Terraform Destroy
+        working-directory: "singleuser-module"
+        run: terraform destroy -auto-approve
