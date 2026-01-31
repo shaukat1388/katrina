@@ -1,0 +1,48 @@
+name: Destroy Three-in-One 
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+
+    env:
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      ARM_USE_OIDC: "true"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+
+# phone user conatiner access
+      - name: Terraform Init
+        run: terraform init
+        working-directory: "phone-container-access"
+
+      - name: Terraform Destroy
+        working-directory: "phone-container-access"
+        run: terraform destroy -auto-approve
+# phone user
+      - name: Terraform Init
+        run: terraform init
+        working-directory: "singleuser-module"
+ 
+      - name: Terraform Destroy
+        working-directory: "singleuser-module"
+        run: terraform destroy -auto-approve
+# new conatiner
+      - name: Terraform Init
+        run: terraform init
+        working-directory: "NEW-container"
+
+      - name: Terraform Destroy
+        working-directory: "NEW-container"
+        run: terraform destroy -auto-approve
