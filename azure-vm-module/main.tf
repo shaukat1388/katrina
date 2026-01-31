@@ -54,6 +54,7 @@ resource "azurerm_public_ip" "pip" {
 
   allocation_method = "Static"
   sku               = "Standard"
+  zones = [var.zone]   # 👈 ADDED
 }
 
 resource "azurerm_network_interface" "nic" {
@@ -78,6 +79,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   priority        = "Spot"
   eviction_policy = "Deallocate"
   max_bid_price   = -1
+
+  zone = var.zone     # 👈 ADDED
 
   admin_username = var.admin_username
   network_interface_ids = [
