@@ -1,7 +1,7 @@
-resource_group_name   = "rg-aci-demo"
+resource_group_name   = "rg-docker"
 location              = "eastus"
 
-container_group_name  = "aci-demo-group"
+container_group_name  = "aci-ddocker"
 container_name        = "web"
 container_image       = "nginx:latest"
 container_port        = 80
