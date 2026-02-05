@@ -8,6 +8,11 @@ variable "location" {
   description = "Azure region"
 }
 
+variable "acr_name" {
+  type        = string
+  description = "Existing Azure Container Registry name"
+}
+
 variable "container_group_name" {
   type        = string
 }
