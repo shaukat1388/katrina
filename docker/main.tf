@@ -5,7 +5,7 @@ data "azurerm_resource_group" "this" {
 
 # Reference your existing ACR
 data "azurerm_container_registry" "this" {
-  name                = "<YOUR_ACR_NAME>"   # <-- replace with your ACR name
+  name                = "shaukatreg1"   # <-- replace with your ACR name
   resource_group_name = data.azurerm_resource_group.this.name
 }
 
