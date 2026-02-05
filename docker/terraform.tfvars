@@ -1,12 +1,11 @@
 resource_group_name   = "rg-docker"
 location              = "eastus"
 
-container_group_name  = "aci-ddocker"
+container_group_name  = "aci-quickstart"
 container_name        = "web"
-container_image       = "nginx:latest"
 container_port        = 80
 
-dns_name_label         = "aci-demo-nginx-12345"
+dns_name_label        = "aci-quickstart-12345"
 
 cpu                   = 0.5
 memory                = 1.0
@@ -16,7 +15,6 @@ environment_variables = {
 }
 
 tags = {
-  project = "docker-aci"
+  project = "quickstart-aci"
   owner   = "terraform"
 }
-acr_name = "acrdocker12345"
