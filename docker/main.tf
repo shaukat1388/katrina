@@ -5,7 +5,7 @@ data "azurerm_resource_group" "this" {
 
 # Reference your existing ACR
 data "azurerm_container_registry" "this" {
-  name                = "shaukatreg1"   # <-- replace with your ACR name
+  name                = var.acr_name
   resource_group_name = data.azurerm_resource_group.this.name
 }
 
@@ -19,7 +19,7 @@ resource "azurerm_container_group" "this" {
   ip_address_type = "Public"
   dns_name_label  = var.dns_name_label
 
-  # Pull image from your private ACR
+  # Use ACR admin credentials to pull image
   image_registry_credential {
     server   = data.azurerm_container_registry.this.login_server
     username = data.azurerm_container_registry.this.admin_username
@@ -28,7 +28,7 @@ resource "azurerm_container_group" "this" {
 
   container {
     name   = var.container_name
-    image  = "${data.azurerm_container_registry.this.login_server}/nginx:latest"  # <-- Quickstart image imported into ACR
+    image  = "${data.azurerm_container_registry.this.login_server}/nginx:latest" # ACR quickstart image
     cpu    = var.cpu
     memory = var.memory
 
