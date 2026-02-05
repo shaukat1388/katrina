@@ -1,12 +1,11 @@
 data "azurerm_resource_group" "this" {
-  name     = var.resource_group_name
-  location = var.location
+  name = var.resource_group_name
 }
 
 resource "azurerm_container_group" "this" {
   name                = var.container_group_name
-  location            = azurerm_resource_group.this.location
-  resource_group_name = azurerm_resource_group.this.name
+  location            = data.azurerm_resource_group.this.location
+  resource_group_name = data.azurerm_resource_group.this.name
   os_type             = "Linux"
 
   ip_address_type = "Public"
