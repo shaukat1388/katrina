@@ -1,6 +1,6 @@
 variable "resource_group_name" {
   type        = string
-  description = "Azure resource group name"
+  description = "Existing Resource Group name"
 }
 
 variable "location" {
@@ -14,11 +14,6 @@ variable "container_group_name" {
 
 variable "container_name" {
   type        = string
-}
-
-variable "container_image" {
-  type        = string
-  description = "Docker image (e.g. nginx:latest)"
 }
 
 variable "container_port" {
@@ -49,8 +44,4 @@ variable "environment_variables" {
 variable "tags" {
   type    = map(string)
   default = {}
-}
-variable "acr_name" {
-  type        = string
-  description = "Globally unique ACR name"
 }
