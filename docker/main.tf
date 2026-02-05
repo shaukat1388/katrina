@@ -27,3 +27,22 @@ resource "azurerm_container_group" "this" {
 
   tags = var.tags
 }
+resource "azurerm_container_registry" "this" {
+  name                = var.acr_name
+  resource_group_name = data.azurerm_resource_group.this.name
+  location            = data.azurerm_resource_group.this.location
+  sku                 = "Basic"
+  admin_enabled       = true
+}
+resource "azurerm_container_group" "this" {
+
+  image_registry_credential {
+    server   = azurerm_container_registry.this.login_server
+    username = azurerm_container_registry.this.admin_username
+    password = azurerm_container_registry.this.admin_password
+  }
+
+  container {
+    image = "${azurerm_container_registry.this.login_server}/nginx:latest"
+  }
+}

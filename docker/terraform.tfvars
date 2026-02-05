@@ -19,3 +19,4 @@ tags = {
   project = "docker-aci"
   owner   = "terraform"
 }
+acr_name = "acrdocker12345"
